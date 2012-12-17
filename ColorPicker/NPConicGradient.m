@@ -102,10 +102,13 @@
 -(void)addColor:(UIColor *)color atPosition:(CGFloat) position {
    [positions_ addObject:[[GradientPosition alloc]initWithColor:color atPosition:position]];
    [positions_ sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-      if ([obj1 position] < [obj2 position]) {
+       GradientPosition *pos1 = (GradientPosition *)obj1;
+       GradientPosition *pos2 = (GradientPosition *)obj2;
+       
+      if ([pos1 position] < [pos2 position]) {
          return NSOrderedAscending;
       }
-      if ([obj1 position] == [obj2 position]) {
+      if ([pos1 position] == [pos2 position]) {
          return NSOrderedSame;
       }
       return NSOrderedDescending;
